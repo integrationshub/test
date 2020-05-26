@@ -6,7 +6,7 @@
 	<artifactId>test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
-
+    
 	<name>test</name>
 
     <properties>
@@ -15,7 +15,16 @@
 
 		<app.runtime>4.3.0</app.runtime>
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
-	<munit.version>2.2.4</munit.version>
+		<munit.version>2.2.4</munit.version>
+		
+	   <anypoint.username>iamkiran_test</anypoint.username>
+	   <anypoint.password>Anvitha10!</anypoint.password>
+	   <cloundhub.env>Sandbox</cloundhub.env>
+	   <cloudhub.workers>1</cloudhub.workers>
+	   <cloudhub.workerType>Micro</cloudhub.workerType>
+	   <application.name>${artifactId}-1-SNAPSHOT</application.name>
+		
+		
     </properties>
    
 
@@ -27,7 +36,21 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-				</configuration>
+	   				<classifier>mule-application</classifier>
+	   				<cloudHubDeployment>
+	   		            <muleVersion>${app.runtime}</muleVersion>
+	   		            <username>${anypoint.username}</username>
+	   		            <password>${anypoint.password}</password>
+	   		            <applicationName>${application.name}</applicationName>
+	   		            <environment>${cloundhub.env}</environment>
+	   		            <!-- <businessGroup>${anypoint.businessGroup}</businessGroup>
+	   		            <region>${cloudhub.region}</region>
+	   		            <uri>${anypoint.uri}</uri>  -->
+	   		            <workerType>${cloudhub.workerType}</workerType>
+	   		            <workers>${cloudhub.workers}</workers>
+	   		            <objectStoreV2>true</objectStoreV2>
+	   		          </cloudHubDeployment>
+                   </configuration>
 			</plugin>
 		<plugin>
                 <groupId>com.mulesoft.munit.tools</groupId>
